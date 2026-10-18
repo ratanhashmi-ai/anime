@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anime Soul ✦</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #ff6ec7;
+  --purple: #a78bfa;
+  --bg: #090714;
+  --card: rgba(24, 18, 43, 0.88);
+  --text: #f8f3ff;
+  --muted: #b8adc9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  background:
+    radial-gradient(ellipse at 15% 20%, #39205b 0%, transparent 40%),
+    radial-gradient(ellipse at 85% 80%, #481c49 0%, transparent 38%),
+    var(--bg);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .35;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white 99%, transparent),
+    radial-gradient(1px 1px at 70% 60%, white 99%, transparent),
+    radial-gradient(2px 2px at 45% 80%, white 99%, transparent),
+    radial-gradient(1px 1px at 90% 15%, white 99%, transparent);
+  background-size: 180px 180px;
+  animation: stars 12s linear infinite;
+}
+
+@keyframes stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-80px); }
+}
+
+.container {
+  position: relative;
+  width: min(760px, 92%);
+  margin: auto;
+  padding: 38px 0 55px;
+}
+
+header { text-align: center; margin-bottom: 28px; }
+
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--pink);
+  letter-spacing: 4px;
+  font-size: 12px;
+  text-shadow: 0 0 18px var(--pink);
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(32px, 7vw, 57px);
+  line-height: 1.2;
+  margin: 12px 0;
+  background: linear-gradient(90deg, #fff, #ff8bd9, #bca5ff);
+  color: transparent;
+  background-clip: text;
+}
+
+.subtitle { color: var(--muted); font-size: 14px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(200, 150, 255, .25);
+  border-radius: 24px;
+  padding: clamp(22px, 5vw, 38px);
+  box-shadow: 0 15px 60px #0005, 0 0 30px #a78bfa12;
+  backdrop-filter: blur(12px);
+  animation: appear .5s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hidden { display: none !important; }
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+h2 { font-size: 25px; margin: 12px 0; }
+p { line-height: 1.7; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  transition: .2s ease;
+}
+
+.primary {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 13px;
+  color: #160c22;
+  font-weight: 800;
+  background: linear-gradient(100deg, #ff82d4, #b6a0ff);
+  box-shadow: 0 5px 24px #e879d533;
+  margin-top: 22px;
+}
+
+.primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+.secondary {
+  padding: 11px 16px;
+  border-radius: 11px;
+  color: var(--text);
+  border: 1px solid #ffffff2c;
+  background: #ffffff0b;
+}
+
+.secondary:hover { background: #ffffff18; }
+
+.topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 13px;
+}
+
+.progress {
+  height: 6px;
+  border-radius: 20px;
+  background: #ffffff12;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  border-radius: inherit;
+  transition: width .4s;
+}
+
+.question { font-size: clamp(20px, 4vw, 27px); margin: 0 0 22px; }
+
+.answers { display: grid; gap: 12px; }
+
+.answer {
+  text-align: left;
+  padding: 16px;
+  border-radius: 13px;
+  color: var(--text);
+  border: 1px solid #ffffff20;
+  background: #ffffff08;
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+.answer:hover {
+  border-color: var(--pink);
+  background: #ff6ec714;
+  transform: translateX(4px);
+}
+
+.answer .letter {
+  display: grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: #a78bfa22;
+  color: #d7c7ff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.result { text-align: center; }
+
+.result-emoji {
+  font-size: 66px;
+  margin: 15px 0;
+  filter: drop-shadow(0 0 20px #ff6ec755);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+.result h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(25px, 6vw, 38px);
+  background: linear-gradient(90deg, #ff8bd9, #c6b4ff);
+  background-clip: text;
+  color: transparent;
+}
+
+.character-label {
+  display: inline-block;
+  color: var(--pink);
+  border: 1px solid #ff6ec744;
+  background: #ff6ec711;
+  padding: 6px 13px;
+  border-radius: 50px;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.description { color: #d4c9e4; font-size: 14px; }
+
+.traits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 22px 0;
+}
+
+.trait {
+  padding: 8px 12px;
+  border-radius: 50px;
+  background: #a78bfa18;
+  border: 1px solid #a78bfa40;
+  font-size: 12px;
+}
+
+.quote {
+  padding: 17px;
+  margin-top: 20px;
+  border-left: 3px solid var(--pink);
+  background: #ffffff07;
+  color: #e8d8ff;
+  font-style: italic;
+  font-size: 14px;
+  text-align: left;
+}
+
+.actions { display: grid; gap: 10px; margin-top: 22px; }
+
+footer {
+  text-align: center;
+  color: #887d9d;
+  font-size: 11px;
+  margin-top: 22px;
+}
+
+@media (min-width: 550px) {
+  .actions { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <header>
+    <div class="logo">✦ YOUR INNER UNIVERSE ✦</div>
+    <h1>ANIME SOUL</h1>
+    <div class="subtitle">Every heart belongs to a story. Discover yours.</div>
+  </header>
+
+  <section class="card" id="welcome">
+    <div class="eyebrow">✧ A little self-discovery</div>
+    <h2>Which anime character lives in your soul?</h2>
+    <p style="color:var(--muted)">
+      Are you the quiet protector, the chaotic sunshine, the fearless fighter,
+      or the one who loves a little too deeply? Answer 10 questions and find
+      your anime twin.
+    </p>
+    <p>☾ ✦ 8 possible characters · 10 questions · 100% your vibe</p>
+    <button class="primary" onclick="startQuiz()">DISCOVER MY SOUL →</button>
+  </section>
+
+  <section class="card hidden" id="quiz">
+    <div class="topline">
+      <span id="questionCount">QUESTION 01 / 10</span>
+      <span id="percent">10% completed</span>
+    </div>
+    <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="eyebrow">✦ Choose what feels like you</div>
+    <h2 class="question" id="questionText"></h2>
+    <div class="answers" id="answers"></div>
+  </section>
+
+  <section class="card hidden result" id="result">
+    <div class="eyebrow">✦ YOUR ANIME SOULMATE IS ✦</div>
+    <div class="result-emoji" id="resultEmoji"></div>
+    <span class="character-label" id="resultUniverse"></span>
+    <h2 id="resultName"></h2>
+    <p class="description" id="resultDescription"></p>
+    <div class="traits" id="resultTraits"></div>
+    <div class="quote" id="resultQuote"></div>
+    <div class="actions">
+      <button class="primary" onclick="retakeQuiz()" style="margin:0">↻ RETAKE QUIZ</button>
+      <button class="secondary" onclick="shareResult()">✦ SHARE MY RESULT</button>
+      <button class="secondary" onclick="saveResult()" style="grid-column:1/-1">↓ SAVE AS TEXT FILE</button>
+    </div>
+  </section>
+
+  <footer>MADE OF STARDUST, FEELINGS & ANIME ✦</footer>
+</div>
+
+<script>
+const questions = [
+  {
+    q: "When someone you love is hurting, what do you do?",
+    a: [
+      ["Stay beside them, even in silence.", "Nezuko"],
+      ["Make them laugh until they smile.", "Naruto"],
+      ["Find the person responsible. Immediately.", "Mikasa"],
+      ["Listen carefully and help them through it.", "Tanjiro"]
+    ]
+  },
+  {
+    q: "Choose your biggest strength.",
+    a: [
+      ["My loyalty. I never abandon my people.", "Levi"],
+      ["My heart. I care more than I show.", "Hinata"],
+      ["My confidence. I know what I can do.", "Gojo"],
+      ["My determination. I never give up.", "Luffy"]
+    ]
+  },
+  {
+    q: "Your ideal day looks like...",
+    a: [
+      ["Peace, snacks, and absolutely no drama.", "Nezuko"],
+      ["A chaotic adventure with my favourite people.", "Luffy"],
+      ["Quiet time with someone who understands me.", "Hinata"],
+      ["Training, improving, and getting things done.", "Levi"]
+    ]
+  },
+  {
+    q: "Someone misunderstands you. You...",
+    a: [
+      ["Stay quiet. Not everyone needs to understand me.", "Mikasa"],
+      ["Explain myself honestly, even if it's hard.", "Tanjiro"],
+      ["Make a joke and act like I don't care.", "Gojo"],
+      ["Keep going. I'll prove myself through actions.", "Naruto"]
+    ]
+  },
+  {
+    q: "What's your biggest weakness?",
+    a: [
+      ["I get too attached to people.", "Hinata"],
+      ["I act before I think.", "Luffy"],
+      ["I hide my feelings behind a strong face.", "Levi"],
+      ["I would risk too much for someone I love.", "Mikasa"]
+    ]
+  },
+  {
+    q: "Pick your energy.",
+    a: [
+      ["Soft, caring, and secretly strong.", "Nezuko"],
+      ["Unpredictable, playful, and confident.", "Gojo"],
+      ["Quiet, observant, and dependable.", "Levi"],
+      ["Loud, hopeful, and full of dreams.", "Naruto"]
+    ]
+  },
+  {
+    q: "In a group, you're usually...",
+    a: [
+      ["The one checking if everyone is okay.", "Tanjiro"],
+      ["The shy one who opens up slowly.", "Hinata"],
+      ["The responsible one who handles everything.", "Mikasa"],
+      ["The one making everyone laugh.", "Luffy"]
+    ]
+  },
+  {
+    q: "What matters most in love?",
+    a: [
+      ["Being chosen, even on difficult days.", "Hinata"],
+      ["Protecting each other no matter what.", "Mikasa"],
+      ["Honesty, kindness, and mutual respect.", "Tanjiro"],
+      ["Laughing together and feeling free.", "Luffy"]
+    ]
+  },
+  {
+    q: "When life gets difficult, you...",
+    a: [
+      ["Keep fighting, even when I'm exhausted.", "Naruto"],
+      ["Become quiet and deal with it alone.", "Levi"],
+      ["Find a reason to smile through it.", "Gojo"],
+      ["Take a breath and keep moving forward.", "Nezuko"]
+    ]
+  },
+  {
+    q: "Choose the sentence that feels most like you.",
+    a: [
+      ["I may be gentle, but I'm not weak.", "Nezuko"],
+      ["My people are my reason to keep going.", "Naruto"],
+      ["I don't say much, but I notice everything.", "Levi"],
+      ["My heart is bigger than my fear.", "Tanjiro"]
+    ]
+  }
+];
+
+const characters = {
+  Nezuko: {
+    emoji: "🎋",
+    universe: "DEMON SLAYER",
+    description: "You're gentle, protective, and stronger than people realise. You have a soft heart, but when it comes to the people you love, there's a fierce side of you that nobody should underestimate. Your silence says more than words ever could.",
+    traits: ["Soft-hearted", "Protective", "Quiet strength", "Loyal"],
+    quote: "“Being gentle doesn't mean being weak.”"
+  },
+  Gojo: {
+    emoji: "🌀",
+    universe: "JUJUTSU KAISEN",
+    description: "Confident, playful, and a little impossible to read. You hide serious feelings behind jokes and carry more than you let anyone see. You can light up a room without letting everyone into your world.",
+    traits: ["Confident", "Playful", "Independent", "Mysterious"],
+    quote: "“A little chaos makes life interesting.”"
+  },
+  Levi: {
+    emoji: "⚔️",
+    universe: "ATTACK ON TITAN",
+    description: "You're observant, practical, and fiercely dependable. You don't need grand speeches to prove you care. You show up, handle the hard things, and protect the people who matter—even when you're tired yourself.",
+    traits: ["Reserved", "Reliable", "Brave", "Perceptive"],
+    quote: "“Actions will always speak louder than words.”"
+  },
+  Mikasa: {
+    emoji: "🧣",
+    universe: "ATTACK ON TITAN",
+    description: "Your loyalty runs deep. When you care about someone, you care with your whole heart. You may not express every emotion out loud, but your devotion is unmistakable. Remember that you deserve to be protected, too.",
+    traits: ["Loyal", "Strong", "Devoted", "Protective"],
+    quote: "“Even the strongest heart deserves peace.”"
+  },
+  Tanjiro: {
+    emoji: "☀️",
+    universe: "DEMON SLAYER",
+    description: "You have a rare kind of kindness: the kind that survives difficult days. You try to understand people instead of judging them, and you keep choosing compassion without giving up your courage.",
+    traits: ["Empathetic", "Patient", "Courageous", "Sincere"],
+    quote: "“Kindness is a strength, not a weakness.”"
+  },
+  Naruto: {
+    emoji: "🍥",
+    universe: "NARUTO",
+    description: "You're full of hope, emotion, and determination. Even when things get hard, some part of you believes tomorrow can be better. You want to be understood, and you have a way of making other people feel less alone.",
+    traits: ["Optimistic", "Passionate", "Funny", "Resilient"],
+    quote: "“Your past doesn't have to decide your future.”"
+  },
+  Luffy: {
+    emoji: "🏴‍☠️",
+    universe: "ONE PIECE",
+    description: "You're spontaneous, honest, and impossible to keep in a box. You value freedom and your people above almost everything. You may not overthink every little thing, but when it matters, your heart knows exactly where it stands.",
+    traits: ["Free-spirited", "Loyal", "Adventurous", "Fearless"],
+    quote: "“Life is better when you chase your own adventure.”"
+  },
+  Hinata: {
+    emoji: "💜",
+    universe: "NARUTO",
+    description: "You're thoughtful, sensitive, and full of quiet courage. You might doubt yourself sometimes, but your ability to care deeply is something special. You grow stronger every time you choose to show up as yourself.",
+    traits: ["Gentle", "Thoughtful", "Romantic", "Brave"],
+    quote: "“You can be shy and still be incredibly brave.”"
+  }
+};
+
+let currentQuestion = 0;
+let scores = {};
+let finalCharacter = "";
+
+function resetScores() {
+  scores = {};
+  Object.keys(characters).forEach(name => scores[name] = 0);
+}
+
+function startQuiz() {
+  resetScores();
+  currentQuestion = 0;
+  document.getElementById("welcome").classList.add("hidden");
+  document.getElementById("result").classList.add("hidden");
+  document.getElementById("quiz").classList.remove("hidden");
+  showQuestion();
+}
+
+function showQuestion() {
+  const item = questions[currentQuestion];
+  const number = currentQuestion + 1;
+
+  document.getElementById("questionCount").textContent =
+    `QUESTION ${String(number).padStart(2, "0")} / ${questions.length}`;
+
+  const progress = (number / questions.length) * 100;
+  document.getElementById("percent").textContent = `${progress}% completed`;
+  document.getElementById("progressFill").style.width = `${progress}%`;
+  document.getElementById("questionText").textContent = item.q;
+
+  const answers = document.getElementById("answers");
+  answers.innerHTML = "";
+
+  item.a.forEach((answer, index) => {
+    const button = document.createElement("button");
+    button.className = "answer";
+
+    const letter = document.createElement("span");
+    letter.className = "letter";
+    letter.textContent = String.fromCharCode(65 + index);
+
+    const label = document.createElement("span");
+    label.textContent = answer[0];
+
+    button.append(letter, label);
+    button.addEventListener("click", () => chooseAnswer(answer[1]));
+    answers.appendChild(button);
+  });
+}
+
+function chooseAnswer(character) {
+  scores[character]++;
+
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById("quiz").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+
+  const highestScore = Math.max(...Object.values(scores));
+  const winners = Object.keys(scores).filter(
+    name => scores[name] === highestScore
+  );
+
+  finalCharacter = winners[Math.floor(Math.random() * winners.length)];
+  const person = characters[finalCharacter];
+
+  document.getElementById("resultEmoji").textContent = person.emoji;
+  document.getElementById("resultUniverse").textContent = person.universe;
+  document.getElementById("resultName").textContent = finalCharacter;
+  document.getElementById("resultDescription").textContent = person.description;
+  document.getElementById("resultQuote").textContent = person.quote;
+
+  const traits = document.getElementById("resultTraits");
+  traits.innerHTML = "";
+
+  person.traits.forEach(trait => {
+    const span = document.createElement("span");
+    span.className = "trait";
+    span.textContent = "✦ " + trait;
+    traits.appendChild(span);
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function retakeQuiz() {
+  startQuiz();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function getShareText() {
+  const person = characters[finalCharacter];
+  return `✦ MY ANIME SOUL ✦\n\nI'm ${finalCharacter} ${person.emoji}\nFrom: ${person.universe}\n\n${person.description}\n\nTake the Anime Soul quiz and discover your character!`;
+}
+
+async function shareResult() {
+  const text = getShareText();
+
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: "My Anime Soul ✦", text });
+    } catch (error) {
+      if (error.name !== "AbortError") copyResult(text);
+    }
+  } else {
+    copyResult(text);
+  }
+}
+
+async function copyResult(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    alert("Your result has been copied! ✨");
+  } catch {
+    prompt("Copy your result below:", text);
+  }
+}
+
+function saveResult() {
+  const blob = new Blob([getShareText()], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = `my-anime-soul-${finalCharacter.toLowerCase()}.txt`;
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
